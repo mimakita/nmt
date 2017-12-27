@@ -67,7 +67,8 @@ def check_vocab(vocab_file, out_dir, check_special_token=True, sos=None,
         with codecs.getwriter("utf-8")(
             tf.gfile.GFile(new_vocab_file, "wb")) as f:
           for word in vocab:
-            f.write("%s\n" % word)
+            if word:
+              f.write("%s\n" % word)
         vocab_file = new_vocab_file
   else:
     raise ValueError("vocab_file '%s' does not exist." % vocab_file)
